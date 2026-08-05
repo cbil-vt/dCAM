@@ -2,7 +2,7 @@ Package: dCAM
 Type: Package
 Title: Detecting cell type specific differential expressions in grouped bulk data
 Version: 0.1.0
-Authors@R: c(person("Saurabh", "Bhardwaj ", email = "dpdu@vt.edu", role = c("aut", "cre"),
+Authors@R: c(person("Saurabh", "Bhardwaj ", email = "dpdu@vt.edu", role = c("aut")),
              person("Yizhi", "Wang", email = "yzwang@vt.edu", role = c("aut", "cre")))
 biocViews: Software, CellBiology, GeneExpression
 Description: We present reference-free differential Convex Analysis of Mixtures (dCAM), 
