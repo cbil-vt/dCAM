@@ -7,11 +7,22 @@
 
 <!-- badges: end -->
 
-The goal of dCAM is to …
+We present reference-free differential Convex Analysis of Mixtures
+(dCAM), a joint deconvolution method of analyzing grouped bulk data of
+varying composition that can improve detection of cell type specific
+differential expressions in many biological contexts. With an L1-norm
+differential expression penalty-based regularization, dCAM jointly and
+iteratively estimates both cell type proportions and cell type specific
+gene expressions in grouped bulk data, and performs cell type-specific
+differential expression analysis between groups. Through realistic
+grouped bulk simulations, we demonstrate that dCAM can better detect
+differentially expressed genes than existing methods. We also report
+real-data case studies to validate the applicability of dCAM in
+biomedical research.
 
 ## Installation
 
-You can install the development version of dCAM like so:
+You can install dCAM using `devtools`:
 
 ``` r
 install.packages("devtools")
@@ -20,34 +31,36 @@ pak::pkg_install("cbil-vt/dCAM")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows the usage of dCAM. The synthetic
+data constains 3 cell types, 7799 genes, and 20 sample (10 in group 1,
+and 10 in group 2). We simulated a small portion of down- or
+up-regulated genes based on a sorted cell bulk RNA-seq data (GSE73721).
+This examples should take about 3 minutes to finish.
 
 ``` r
 library(dCAM)
-#> my Java class path: [1] "C:\\Users\\freem\\AppData\\Local\\R\\cache\\R\\renv\\library\\dCAMPkg-6f7bcdf8\\windows\\R-4.6\\x86_64-w64-mingw32\\rJava\\java"                 
-#> [2] "C:\\Users\\freem\\AppData\\Local\\R\\cache\\R\\renv\\library\\dCAMPkg-6f7bcdf8\\windows\\R-4.6\\x86_64-w64-mingw32\\dCAM\\java"                  
-#> [3] "C:\\Users\\freem\\AppData\\Local\\R\\cache\\R\\renv\\library\\dCAMPkg-6f7bcdf8\\windows\\R-4.6\\x86_64-w64-mingw32\\dCAM\\java\\CornerDetect.jar"
-## basic example code
+
+# A synthetic data
+data(dataset)
+
+# Run dCAM
+fit <- dCAM::run_dcam(
+  dataset,
+  K = 3,
+  cam_params = list(radius.thres = 0.96),
+  reweight = "once",
+  freeze_A = FALSE,
+  max_iter = 5
+)
+
+# Performance evalution using pAUC
+up <- compute_deg_metrics(fit$delta_S, dataset$truth$is_up,   0.05, "up")
+dn <- compute_deg_metrics(fit$delta_S, dataset$truth$is_down, 0.05, "down")
+cat(sprintf("  detection (pAUC):          up=%.4f  down=%.4f\n",
+            up$pooled_pauc_norm, dn$pooled_pauc_norm))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+In this example, for up-regulated genes, we have pAUC of 0.847, while
+for down-regulated genes, the pAUC is 0.347. This performance difference
+is expected, as down regulation leads to lower signal to noise ratio and
+is more challenging to detect.

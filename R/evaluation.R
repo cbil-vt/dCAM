@@ -33,6 +33,17 @@ auc_proc <- function(score, label, max_fpr = 0.05) {
 
 
 # compute_deg_metrics() -- score a whole genes x cellTypes matrix at once.
+#' Title
+#'
+#' @param score_mat
+#' @param truth_mat
+#' @param max_fpr
+#' @param direction
+#'
+#' @returns
+#' @export
+#'
+#' @examples
 compute_deg_metrics <- function(score_mat, truth_mat, max_fpr = 0.05,
                                 direction = c("up", "down", "both")) {
   direction <- match.arg(direction)

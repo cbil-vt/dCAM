@@ -17,16 +17,12 @@ results. \code{\link[debCAM]{MDL}} can help decide the underlying subpopulation
 number.
 }
 \author{
-\strong{Maintainer}: Chiung-Ting Wu \email{ctwu@vt.edu}
+\strong{Maintainer}: Yizhi Wang \email{yzwang@vt.edu}
 
 Authors:
 \itemize{
-  \item Chiung-Ting Wu \email{ctwu@vt.edu}
-}
-
-Other contributors:
-\itemize{
-  \item Dongping Du \email{dpdu@vt.edu} [contributor]
+  \item Yizhi Wang \email{yzwang@vt.edu}
+  \item Saurabh Bhardwaj \email{dpdu@vt.edu}
 }
 
 }

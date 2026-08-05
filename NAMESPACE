@@ -8,15 +8,19 @@ export(CAM3Run)
 export(CAMMGCluster)
 export(PCAmat)
 export(Smat)
+export(best_permutation)
+export(compute_deg_metrics)
 export(cornerSort)
 export(cotMG)
 export(run_dcam)
 export(simplexplot2)
 export(tune_lambda)
 exportMethods(PCAmat)
-importFrom(rJava,.jarray)
-importFrom(rJava,.jcall)
-importFrom(rJava,.jclassPath)
-importFrom(rJava,.jevalArray)
-importFrom(rJava,.jnew)
-importFrom(rJava,.jpackage)
+importFrom(rJava,
+  .jarray,
+  .jcall,
+  .jclassPath,
+  .jevalArray,
+  .jnew,
+  .jpackage
+)
