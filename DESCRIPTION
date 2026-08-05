@@ -1,0 +1,39 @@
+Package: dCAM
+Type: Package
+Title: Detecting cell type specific differential expressions in grouped bulk data
+Version: 0.1.0
+Authors@R: c(person("Saurabh", "Bhardwaj ", email = "dpdu@vt.edu", role = c("aut", "cre"),
+             person("Yizhi", "Wang", email = "yzwang@vt.edu", role = c("aut", "cre")))
+biocViews: Software, CellBiology, GeneExpression
+Description: We present reference-free differential Convex Analysis of Mixtures (dCAM), 
+  a joint deconvolution method of analyzing grouped bulk data of varying composition 
+  that can improve detection of cell type specific differential expressions in many 
+  biological contexts. With an L1-norm differential expression penalty-based
+  regularization, dCAM jointly and iteratively estimates both cell type
+  proportions and cell type specific gene expressions in grouped bulk data, 
+  and performs cell type-specific differential expression analysis between groups.
+License: MIT
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 4.5) 
+Suggests: 
+    knitr,
+    rmarkdown,
+    BiocStyle,
+    testthat,
+    GEOquery,
+    rgl,
+VignetteBuilder: knitr
+Imports:
+    methods,
+    stats,
+    Biobase,
+    SummarizedExperiment,
+    corpcor,
+    geometry,
+    NMF,
+    nnls,
+    graphics,
+    rJava,
+    clue,
+Config/roxygen2/version: 8.0.0
